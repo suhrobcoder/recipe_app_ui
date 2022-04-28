@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:recipe_app_ui/pages/details/details_page.dart';
 import 'package:recipe_app_ui/pages/home/home_page.dart';
 
 void main() {

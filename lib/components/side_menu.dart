@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:recipe_app_ui/utils/iterable_extensions.dart';
 
@@ -17,32 +18,38 @@ class SideMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 80,
-      child: ClipRRect(
-        borderRadius: const BorderRadius.only(bottomRight: Radius.circular(40)),
-        child: Container(
-          color: const Color(0xFF1B1B1B),
-          child: Column(
-            children: [
-              SafeArea(child: profileImage),
-              Expanded(
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    children: items
-                        .mapIndexed(
-                          (element, index) => MenuItemWidget(
-                            title: element.title,
-                            selected: currentIndex == index,
-                            onTap: () => onItemSelected?.call(index),
-                          ),
-                        )
-                        .toList(),
+    return SafeArea(
+      top: false,
+      child: SizedBox(
+        width: 80,
+        child: ClipRRect(
+          borderRadius:
+              const BorderRadius.only(bottomRight: Radius.circular(40)),
+          child: Container(
+            color: const Color(0xFF1B1B1B),
+            child: SafeArea(
+              child: Column(
+                children: [
+                  profileImage,
+                  const SizedBox(height: 8),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: items
+                            .mapIndexed(
+                              (element, index) => MenuItemWidget(
+                                title: element.title,
+                                selected: currentIndex == index,
+                                onTap: () => onItemSelected?.call(index),
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
@@ -72,14 +79,14 @@ class MenuItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: selected ? const Color(0xFFFEB800) : Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
+      child: CupertinoButton(
+        onPressed: onTap,
         child: RotatedBox(
           quarterTurns: 3,
           child: SizedBox(
             height: double.infinity,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Center(
                 child: Text(
                   title,

@@ -10,12 +10,11 @@ class DetialsPage extends StatelessWidget {
     return CupertinoPageScaffold(
       backgroundColor: const Color(0xFF1B1B1B),
       child: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
         slivers: [
           CupertinoSliverNavigationBar(
             backgroundColor: Colors.transparent,
             leading: CupertinoNavigationBarBackButton(
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).pop(),
               color: Colors.white,
             ),
             largeTitle: const Text(
